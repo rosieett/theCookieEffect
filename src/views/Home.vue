@@ -1,28 +1,32 @@
 <template>
   <div class="home">
 
-    <hello-world />
+    <!-- <hello-world /> -->
 
     <div id ="form">
-      <div>
-        <h3></h3>
-        <div v-for="category in categories">
-          <h4>{{ category.name }}</h4>
+        <h3>Question 1</h3>
+
+          <div v-for="category in categories">
+          <h3>{{ category.name }}</h3>
+            <h4>{{ category.description }}</h4>
+
+          <div v-for="options in categories">
+            <input type="radio" name="name" id="one" v-bind:value="categories.value" v-model="categories.name">
+            <label for="one">{{ options.label }}</label>
         </div>
-        <div v-for="options in categories">
-          <input type="radio" name="name" id="one" v-bind:value="categories.value" v-model="categories.name">
-          div<label for="one">{{ options.options }}</label>
       </div>
 
       <div>
         <h3>User Selections</h3>
         <div>
-          <!-- Spread: {{categories.spread}} -->
+          Spread: {{ categories.value }}
         </div>
       </div>
       </div>
     </div>
-  </div>
+
+
+  </div> 
 </template>
 
 <script>
@@ -41,7 +45,7 @@ export default {
             {
               label: "Wide",
               value: "Wide",
-              imgUrl: ""
+              imgUrl: "cookieproject/src/components/HelloWorld.vue"
             },
             {
               label: "Compact",
@@ -68,21 +72,6 @@ export default {
           ],
         },
       ]
-      // cookieOptions: {
-      //   spread: [
-      //     {
-      //       label: 'Wide',
-      //       value: 'Wide Cookies'
-      //     },
-      //     {
-      //       label: 'Compact',
-      //       value: 'Compact'
-      //     }
-      //   ]
-      // },
-      // cookieSelections: {
-      //   spread: "",
-      // }
     }
   }, 
   methods:{
