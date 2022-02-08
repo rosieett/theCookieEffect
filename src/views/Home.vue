@@ -4,25 +4,20 @@
     <!-- <hello-world /> -->
 
     <div id ="form">
-        <h3>Question 1</h3>
 
-          <div v-for="category in categories">
-          <h3>{{ category.name }}</h3>
+          <div v-for="(category, index) in categories">
+            <h3>{{ category.name }}</h3>
             <h4>{{ category.description }}</h4>
 
-          <div v-for="options in categories">
-            <input type="radio" name="name" id="one" v-bind:value="categories.value" v-model="categories.name">
-            <label for="one">{{ options.label }}</label>
-        </div>
-      </div>
+              <div v-for="option in category.options">
+                <input type="radio" :name="category.id" id="one" v-bind:value="option.value" v-model="results[index]">
+                <label for="one">{{ option.label }}</label>
+            </div>
+          </div>
+    </div>
 
-      <div>
-        <h3>User Selections</h3>
-        <div>
-          Spread: {{ categories.value }}
-        </div>
-      </div>
-      </div>
+      {{ results }}
+      {{ biteResult }}
     </div>
 
 
@@ -40,7 +35,8 @@ export default {
       categories: [
         {
           name: 'Spread',
-          description: 'The way a cookie exapnds and settles while baking',
+          id: 'spread',
+          description: 'The way a cookie expands and settles while baking',
           options: [
             {
               label: "Wide",
@@ -51,11 +47,17 @@ export default {
               label: "Compact",
               value: "Compact",
               imgUrl: ""
+            }, 
+            {
+              label: "Test",
+              value: "Test",
+              imgUrl: ""
             }
           ],
         },
         {
           name: 'Bite',
+          id: 'bite',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
           imgUrl: "",
           options: [
@@ -71,9 +73,17 @@ export default {
             },
           ],
         },
+      ],
+      results: [
+
       ]
     }
   }, 
+  computed: {
+    biteResult(){
+      return this.results[1]
+    }
+  },
   methods:{
     onDeleteLastItem(){
       this.exampleList.pop();
