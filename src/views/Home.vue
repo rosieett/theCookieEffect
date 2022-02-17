@@ -1,7 +1,7 @@
 <template>
 <div class="home">
-    <!-- <hello-world /> -->
-    <!-- <div id="form">
+    <!-- <hello-world />
+     <div id="form">
         <div v-for="(category, index) in categories">
             <h3>{{ category.name }}</h3>
             <h4>{{ category.description }}</h4>
@@ -15,27 +15,29 @@
     {{ results }} {{ biteResult }} -->
 
     <div id="form">
-        <div v-for="(category, index) in categories">
-            <h3>{{ category.name }}</h3>
-            <h4>{{ category.description }}</h4>
 
-            <b-container class="bv-example-row">
-                <b-row>
-                    <b-col class="this" v-for="option in category.options">
-                      
-                        <input type="radio" :name="category.id" id="one" v-bind:value="option.value" v-model="results[index]">
-                        <label for="one" class="radiobtn">{{ option.label }} </label>
-                    </b-col>
-                </b-row>
-            </b-container>
+        <div class="headers" v-for="(category, index) in categories">
+            <div class="section">
+                <h3>{{ category.name }}</h3>
+                <h4>{{ category.description }}</h4>
 
+                <b-container class="bv-example-row cardRow">
+                    <b-row>
+                        <b-col class="cardBtn" v-for="option in category.options">
+
+                            <input type="radio" :name="category.id" id="one" v-bind:value="option.value" v-model="results[index]">
+                            <label for="one">{{ option.label }} </label>
+                        </b-col>
+                    </b-row>
+                </b-container>
+            </div>
         </div>
     </div>
 
-    {{ results }} {{ biteResult }}
+    {{ spreadResult }} {{ biteResult }}
 
 </div>
-</div>
+
 </template>
 
 <script>
@@ -51,19 +53,14 @@ export default {
                     description: 'The way a cookie expands and settles while baking',
                     options: [{
                             label: "Wide",
-                            value: "Wide",
-                            imgUrl: "cookieproject/src/components/HelloWorld.vue"
+                            value: "wide",
+                            imgUrl:"https://unsplash.com/photos/DqvMdSbWlBE"
                         },
                         {
                             label: "Compact",
-                            value: "Compact",
+                            value: "compact",
                             imgUrl: ""
                         },
-                        {
-                            label: "Test",
-                            value: "Test",
-                            imgUrl: ""
-                        }
                     ],
                 },
                 {
@@ -73,12 +70,12 @@ export default {
                     imgUrl: "",
                     options: [{
                             label: "Crunchy",
-                            value: "Crunchy",
+                            value: "crunchy",
                             imgUrl: ""
                         },
                         {
-                            label: "Compact",
-                            value: "compact",
+                            label: "Soft",
+                            value: "soft",
                             imgUrl: ""
                         },
                     ],
@@ -88,6 +85,9 @@ export default {
         }
     },
     computed: {
+        spreadResult() {
+            return this.results[0]
+        },
         biteResult() {
             return this.results[1]
         }
@@ -113,24 +113,60 @@ export default {
     background-color: darkgray;
 }
 
-.this {
-    outline: solid 2px black;
-    padding: 50px;
-    margin: 20px;
-    background-color: gray
-}
 
-/* input[type="radio"] {
-      display: none;
+#form {
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    width: 100%;
-  appearance: none;
-} */
-
-
-.radiobtn{
-  font-weight: 800;
-  color: white;
-  padding: 5px
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60%;
+    padding: 30px;
+    /* background-color: #cccccc; */
 }
+
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 30px;
+    border: solid 2px #dddddd;
+    padding: 20px;
+}
+
+
+.cardRow .cardBtn input{
+    /* display: none; */
+}
+
+.cardRow .cardBtn label{
+    display: block;
+    border: 3px solid #b3cbeb;
+    text-align: center;
+    padding: 35px;
+}
+
+.cardRow .cardBtn .title{
+    font-size: 18px;
+    color: black;
+    padding: 40px;
+    font-weight: 600;
+}
+
+.cardRow .cardBtn label:hover{
+    border: 2px solid gray;
+    background: #ccc;
+}
+
+.cardRow .cardBtn input:checked + label {
+    background: #8eacd4;
+}
+
+
+.cardRow .cardBtn input:checked + label .title {
+    color: #eee;
+}
+
 </style>
