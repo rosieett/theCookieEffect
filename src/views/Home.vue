@@ -14,37 +14,30 @@
 
         <b-container class="bv-example-row">
             <b-row>
-                <b-col>
-                    <div class="cardRow" v-for="(category, index) in categories">
-
-                        <div class="panel">
-                            <div class="text">
-                            <h3>{{ category.name }}</h3>
-                            <h4>{{ category.description }}</h4>
-                            </div>
-                            <div class="cardBtn" v-for="option in category.options">
-
-                                <input type="radio" :name="category.id" id="one" v-bind:value="option.value" v-model="results[index]">
-                                <label for="one">{{ option.label }} </label>
-                            </div>
-                        </div>
+                <b-col cols="4" class="card" v-for="(category, index) in categories">
+                    <div v-for="option in category.options">
+                        <label>
+                            <input type="radio" :name="category.id" v-bind:value="option.value" v-model="results[index]"><span>{{ option.label }}</span></label>
                     </div>
-                </b-col>
-                <b-col class="recipe">
-                    <h3>Recipe Area</h3>
 
-    {{ spreadResult }} {{ biteResult }}
+                    <div>
+                        <h3>{{ category.name }}</h3>
+                        <h4>{{ category.description }}</h4>
+                    </div>
+
                 </b-col>
 
             </b-row>
 
+            <b-row>
+                <b-col class="recipe">
+
+                    {{ spreadResult }} {{ biteResult }}
+                </b-col>
+            </b-row>
+
         </b-container>
     </div>
-
-    <!-- <div class="recipe">
-
-</div> -->
-
 
 </div>
 </template>
@@ -56,79 +49,68 @@
     margin-top: 30px;
 }
 
-.recipe {
-    background-color: rgb(153, 214, 214);
-}
-
 h3 {
     font-size: 20px;
-}
-
-.recipe h3{
-    padding-top: 30px;
 }
 
 h4 {
     font-size: 14px;
 }
 
-label {
-    font-size: 16px;
-}
-
-.text{
-    margin: 5px;
-}
-
 #form {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 30px;
     background-color: #eeeeee;
 }
 
-.panel {
+input[type="radio"] {
+    display: none;
+}
+
+.card {
+    padding: 30px;
+}
+
+label {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    position: relative;
-    margin: 10px;
-    /* border: solid 2px #dddddd; */
-    padding: 20px;
-    background-color: white;
 }
 
-input[type="radio"] {
-    /* display: none; */
+.this {
+    background-color: green;
+
 }
 
-.cardRow .cardBtn label {
-    display: block;
+
+span {
     border: 2px solid #bbbbbb;
-    text-align: center;
-    padding: 15px;
+    /* background: #8eacd4; */
+    padding: 10px;
 }
 
-.cardRow .cardBtn .title {
-    font-size: 18px;
-    color: black;
-    padding: 40px;
-    font-weight: 600;
-}
-
-.cardRow .cardBtn label:hover {
-    border: 2px solid #bbbbbb;
-    background: #8eacd4;
-}
-
-.cardRow .cardBtn input:checked+label {
+.cardRow .cardBtn input:checked+span {
     background: #8eacd4;
     border: 2px solid #777777;
 }
 
-.cardRow .cardBtn input:checked+label .title {
+.cardRow .cardBtn input+span {
     color: #eee;
 }
+
+/* .cardRow .cardBtn label {
+    display: block;
+    border: 2px solid #bbbbbb;
+    text-align: center;
+    padding: 15px;
+} */
+
+/* .cardRow .cardBtn .title {
+    font-size: 18px;
+    color: black;
+    padding: 40px;
+    font-weight: 600;
+} */
 </style>
 
 <script>
@@ -138,11 +120,10 @@ export default {
     name: 'Home',
     data() {
         return {
-            categories: [
-                {
+            categories: [{
                     name: 'Spread',
                     id: 'spread',
-                    description: 'The way a cookie expands and settles while baking',
+                    description: 'Paleo taiyaki health goth, actually hella disrupt fashion axe butcher',
                     options: [{
                             label: "Wide",
                             value: "wide",
