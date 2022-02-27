@@ -3,10 +3,13 @@
 
     <b-container class="bv-example-row header">
         <b-row>
-            <h1>The Cookie Effect</h1>
+            <!-- <h1>The Cookie Effect</h1> -->
+            <h1>Title</h1>
         </b-row>
         <b-row>
-            <h5>Select your preferences to find your perfect cookie recipe</h5>
+            <!-- <h5>Select your preferences to find your perfect cookie recipe</h5> -->
+            <h5>Subheader content</h5>
+
         </b-row>
     </b-container>
 
@@ -17,7 +20,14 @@
                 <b-col cols="4" class="card" v-for="(category, index) in categories">
                     <div v-for="option in category.options">
                         <label>
-                            <input type="radio" :name="category.id" v-bind:value="option.value" v-model="results[index]"><span>{{ option.label }}</span></label>
+                            <div>
+                                <b-img src="https://spaceholder.cc/200x200">
+                                </b-img>
+                                <input type="radio" :name="category.id" v-bind:value="option.value" v-model="results[index]">
+                                <span>{{ option.label }}</span>
+                            </div>
+                        </label>
+
                     </div>
 
                     <div>
@@ -61,7 +71,7 @@ h4 {
     display: flex;
     flex-direction: row;
     padding: 30px;
-    background-color: #eeeeee;
+    background-color: #aaaaaa;
 }
 
 input[type="radio"] {
@@ -81,7 +91,6 @@ label {
     background-color: green;
 
 }
-
 
 span {
     border: 2px solid #bbbbbb;
@@ -120,22 +129,23 @@ export default {
     name: 'Home',
     data() {
         return {
-            categories: [{
-                    name: 'Spread',
-                    id: 'spread',
-                    description: 'Paleo taiyaki health goth, actually hella disrupt fashion axe butcher',
-                    options: [{
-                            label: "Wide",
-                            value: "wide",
-                            imgUrl: "https://unsplash.com/photos/DqvMdSbWlBE"
-                        },
-                        {
-                            label: "Compact",
-                            value: "compact",
-                            imgUrl: ""
-                        },
-                    ],
-                },
+            categories: [
+                // {
+                //         name: 'Spread',
+                //         id: 'spread',
+                //         description: 'Paleo taiyaki health goth, actually hella disrupt fashion axe butcher',
+                //         options: [{
+                //                 label: "Wide",
+                //                 value: "wide",
+                //                 imgUrl: 
+                //             },
+                //             {
+                //                 label: "Compact",
+                //                 value: "compact",
+                //                 imgUrl: ""
+                //             },
+                //         ],
+                //     },
                 {
                     name: 'Tenderness',
                     id: 'tenderness',
